@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#a6499a">
+  <meta name="description" content="Hospital School Queensland secondary curriculum option helper based on the supplied education-options matrix.">
+ <title>HSQ Curriculum Navigator</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon-192.png" sizes="192x192">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10v7M12 7h.01"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.5 2.5 0 1 1 4.2 1.8c-1.3.9-2 1.4-2 3M12 17h.01"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M3.5 5.5A3.5 3.5 0 0 1 7 4h5v16H7a3.5 3.5 0 0 0-3.5 1.5zM20.5 5.5A3.5 3.5 0 0 0 17 4h-5v16h5a3.5 3.5 0 0 1 3.5 1.5z"/></symbol>
+    <symbol id="i-book-open" viewBox="0 0 24 24"><path d="M3 5.5A4 4 0 0 1 7 4h5v15H7a4 4 0 0 0-4 2zM21 5.5A4 4 0 0 0 17 4h-5v15h5a4 4 0 0 1 4 2z"/></symbol>
+    <symbol id="i-calculator" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M14 11h2M8 15h2M14 15h2M8 18h2M14 18h2"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.8a5 5 0 0 0-7.1 0L12 7.5l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21l8.8-8.1a5 5 0 0 0 0-7.1z"/></symbol>
+    <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 3l8 3v5c0 5.1-3.4 8.6-8 10-4.6-1.4-8-4.9-8-10V6z"/><path d="M8.5 12l2.2 2.2 4.8-5"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M9 12l-1 9 4-2 4 2-1-9"/></symbol>
+    <symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5zM6 11.5V16c3.3 2.5 8.7 2.5 12 0v-4.5M22 9v6"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.1 3.1L16 7.2l-2.9 1.1L12 11.5l-1.1-3.2L8 7.2l2.9-1.1zM18 13l.8 2.2L21 16l-2.2.8L18 19l-.8-2.2L15 16l2.2-.8zM6 14l.9 2.6L9.5 17l-2.6.9L6 20.5l-.9-2.6L2.5 17l2.6-.4z"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5M6.1 8a7 7 0 0 1 11.7-2L20 11M4 13l2.2 5A7 7 0 0 0 18 16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  </svg>
+
+  <div id="drawerOverlay" class="drawer-overlay" hidden></div>
+  <aside id="appDrawer" class="drawer" aria-label="Application menu" aria-hidden="true">
+    <div class="drawer__brand">
+      <button id="closeDrawer" class="icon-button icon-button--light" type="button" aria-label="Close menu">
+        <svg><use href="#i-close"></use></svg>
+      </button>
+      <img src="assets/hsq-logo.svg" alt="Hospital School Queensland" class="drawer__logo">
+      <div>
+        <strong>Curriculum Navigator</strong>
+<span>HSQ Secondary Curriculum Navigator</span>
+      </div>
+    </div>
+
+    <nav class="drawer__nav">
+      <button type="button" class="drawer-link is-active" data-view="new-student">
+        <svg><use href="#i-home"></use></svg><span>New student</span>
+      </button>
+      <button type="button" class="drawer-link" data-view="how-it-works">
+        <svg><use href="#i-help"></use></svg><span>How it works</span>
+      </button>
+      <button type="button" class="drawer-link" data-view="about">
+        <svg><use href="#i-info"></use></svg><span>About</span>
+      </button>
+    </nav>
+
+    <div class="drawer__privacy">
+      <svg><use href="#i-lock"></use></svg>
+      <p><strong>Designed for minimal data.</strong><br>No student name or health information is requested.</p>
+    </div>
+  </aside>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar__inner">
+        <button id="openDrawer" class="icon-button" type="button" aria-label="Open menu" aria-controls="appDrawer" aria-expanded="false">
+          <svg><use href="#i-menu"></use></svg>
+        </button>
+        <div class="topbar__brand">
+          <img src="assets/hsq-logo.svg" alt="" class="topbar__logo" aria-hidden="true">
+          <div>
+            <strong>Curriculum Navigator</strong>
+            <span>HSQ Secondary Curriculum Navigator</span>
+          </div>
+        </div>
+        <div class="topbar__badge">HSQ matrix</div>
+      </div>
+    </header>
+
+    <main id="mainContent" class="main-content" tabindex="-1">
+      <section id="view-new-student" class="view is-active" data-view-panel="new-student">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">New student</span>
+            <h1>Let’s find suitable learning options</h1>
+            <p>Enter the student's secondary year level, expected length of stay, literacy level and numeracy level to generate curriculum recommendations.</p>
+          </div>
+          <div class="heading-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <section class="panel panel--form" aria-labelledby="studentDetailsTitle">
+            <div class="panel__header">
+              <div class="panel-icon panel-icon--plum"><svg><use href="#i-user"></use></svg></div>
+              <div>
+                <h2 id="studentDetailsTitle">Student details</h2>
+                <p>Required fields are marked with an asterisk.</p>
+              </div>
+            </div>
+
+            <form id="studentForm" novalidate>
+              <div class="form-grid">
+               
+                <div class="field">
+                  <label for="yearLevel">Year level <span aria-hidden="true">*</span></label>
+                  <select id="yearLevel" name="yearLevel" required>
+                    <option value="">Select year level</option>
+                  </select>
+                  <small>Year 7 to Year 12.</small>
+                </div>
+
+                <div class="field field--wide">
+                  <label for="lengthOfStay">Length of stay <span aria-hidden="true">*</span></label>
+                  <select id="lengthOfStay" name="lengthOfStay" required>
+                    <option value="">Select expected stay</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="literacyLevel">Literacy level <span aria-hidden="true">*</span></label>
+                  <select id="literacyLevel" name="literacyLevel" required>
+                    <option value="">Select literacy level</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="numeracyLevel">Numeracy level <span aria-hidden="true">*</span></label>
+                  <select id="numeracyLevel" name="numeracyLevel" required>
+                    <option value="">Select numeracy level</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="formError" class="form-error" role="alert" hidden></div>
+
+              <div class="form-actions">
+                <button class="button button--primary" type="submit">
+                  <svg><use href="#i-sparkles"></use></svg>
+                  <span>Show recommendations</span>
+                  <svg class="button__arrow"><use href="#i-arrow"></use></svg>
+                </button>
+                <button id="resetForm" class="button button--ghost" type="button">
+                  <svg><use href="#i-refresh"></use></svg><span>Clear</span>
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="panel panel--guide">
+            <span class="guide-kicker">What the tool does</span>
+            <h2>Exact spreadsheet matching</h2>
+            <p>The web app looks for the exact combination in the supplied HSQ secondary education matrix.</p>
+            <ol class="guide-list">
+              <li><span>1</span><div><strong>Select the four matching variables.</strong><small>Year, stay, literacy and numeracy drive the lookup.</small></div></li>
+              <li><span>2</span><div><strong>See only entered curriculum options.</strong><small>The app does not invent recommendations where the source matrix is blank.</small></div></li>
+              <li><span>3</span><div><strong>Open supporting process links.</strong><small>Some links require Queensland Education access.</small></div></li>
+            </ol>
+          </aside>
+        </div>
+
+        <section id="resultsSection" class="results" aria-live="polite" hidden>
+          <div class="results__header">
+            <div>
+              <span class="eyebrow">What this student can do at school</span>
+              <h2 id="resultsTitle">Recommended options</h2>
+              <p id="resultsLead"></p>
+            </div>
+            <div class="results__actions">
+              <button id="copySummary" class="button button--secondary" type="button"><svg><use href="#i-copy"></use></svg><span>Copy summary</span></button>
+              <button id="printResults" class="button button--secondary" type="button"><svg><use href="#i-print"></use></svg><span>Print / Save PDF</span></button>
+            </div>
+          </div>
+
+          <div id="selectionSummary" class="selection-summary"></div>
+          <div id="recommendationGrid" class="recommendation-grid"></div>
+
+          <div id="noRecommendations" class="empty-state" hidden>
+            <div class="empty-state__icon"><svg><use href="#i-info"></use></svg></div>
+            <div>
+              <h3>No curriculum option is entered for this exact combination</h3>
+              <p>The source matrix contains this student-variable combination but does not contain an entered curriculum recommendation. The app has intentionally not inferred one.</p>
+            </div>
+          </div>
+
+          <div class="results-note">
+            <svg><use href="#i-info"></use></svg>
+            <p><strong>Starting point only.</strong> Apply professional judgement and current HSQ processes when deciding what is appropriate for an individual student.</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="view-how-it-works" class="view content-page" data-view-panel="how-it-works" hidden>
+        <div class="page-heading page-heading--compact">
+          <div><span class="eyebrow">How it works</span><h1>Simple inputs, exact matrix lookup</h1><p>This version deliberately keeps the decision logic transparent and faithful to the supplied spreadsheet.</p></div>
+        </div>
+        <div class="content-cards">
+          <article class="content-card"><span class="step-badge">1</span><h2>Enter the student profile</h2><p>Choose Year 7–12, expected length of stay, literacy level and numeracy level.</p></article>
+          <article class="content-card"><span class="step-badge">2</span><h2>Match the source matrix</h2><p>The app constructs an exact key from those four variables and retrieves the curriculum options entered against that exact combination.</p></article>
+          <article class="content-card"><span class="step-badge">3</span><h2>Review the options</h2><p>Each result is displayed as a curriculum card. Where the spreadsheet contains a process link, an external-link button is shown.</p></article>
+          <article class="content-card"><span class="step-badge">4</span><h2>Print or copy a summary</h2><p>The result can be printed, saved to PDF using the browser print dialog, or copied as plain text for use in another document.</p></article>
+        </div>
+        <div class="callout"><svg><use href="#i-lock"></use></svg><div><h2>Privacy by design</h2><p>This static prototype does not transmit form data to a server. Avoid entering student names, diagnoses or other identifying health information.</p></div></div>
+      </section>
+
+      <section id="view-about" class="view content-page" data-view-panel="about" hidden>
+        <div class="page-heading page-heading--compact">
+          <div><span class="eyebrow">About</span><h1>Curriculum Navigator</h1><p>A responsive prototype built from the supplied HSQ Secondary Education Options workbook.</p></div>
+        </div>
+        <div class="about-grid">
+          <article class="panel about-panel">
+            <h2>Source</h2>
+            <dl class="facts">
+              <div><dt>Workbook</dt><dd>Secondary Education Options.xlsx</dd></div>
+              <div><dt>Student combinations</dt><dd id="aboutCombinationCount">216</dd></div>
+              <div><dt>Source rows</dt><dd id="aboutSourceRows">660</dd></div>
+              <div><dt>Matching</dt><dd>Exact combination only</dd></div>
+              <div><dt>Student age collected</dt><dd>No</dd></div>
+            </dl>
+          </article>
+          <article class="panel about-panel">
+            <h2>HSQ colour palette used</h2>
+            <div class="palette-list">
+              <div><span style="--swatch:#a6499a"></span><strong>Plum</strong><code>#A6499A</code></div>
+              <div><span style="--swatch:#349f48"></span><strong>Emerald</strong><code>#349F48</code></div>
+              <div><span style="--swatch:#f9e700"></span><strong>Yellow</strong><code>#F9E700</code></div>
+              <div><span style="--swatch:#c5d12e"></span><strong>Lime</strong><code>#C5D12E</code></div>
+              <div><span style="--swatch:#f89521"></span><strong>Orange</strong><code>#F89521</code></div>
+              <div><span style="--swatch:#929497"></span><strong>Grey</strong><code>#929497</code></div>
+              <div><span style="--swatch:#e87cae"></span><strong>Pink</strong><code>#E87CAE</code></div>
+            </div>
+          </article>
+        </div>
+        <div class="callout callout--plum"><svg><use href="#i-info"></use></svg><div><h2>Prototype scope</h2><p>This version is a decision-support interface for the supplied curriculum matrix. It is not a student record system and it does not replace professional judgement or current HSQ procedures.</p></div></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><strong>Learning can happen anywhere.</strong><span>Built as a lightweight, browser-based HSQ Curriculum Navigator.</span></div>
+      <div class="footer-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="data/recommendations-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
